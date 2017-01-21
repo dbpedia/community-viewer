@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <style>
+        body{
+            background:#eee;
+        }
+        .main-box.no-header {
+            padding-top: 20px;
+        }
+        .main-box {
+            background: #FFFFFF;
+            -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
+            box-shadow: 1px 1px 2px 0 #CCCCCC;
+            margin-bottom: 16px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+        .user-list tbody td .user-link {
+            display: block;
+            font-size: 1.25em;
+            padding-top: 3px;
+            margin-left: 60px;
+        }
+        .user-list tbody td>img {
+            position: relative;
+            max-width: 50px;
+            float: left;
+            margin-right: 15px;
+        }
+        .table thead tr th {
+            text-transform: uppercase;
+            font-size: 0.875em;
+        }
+        .table thead tr th {
+            border-bottom: 2px solid #e7ebee;
+        }
+        .table tbody tr td:first-child {
+            font-size: 1.125em;
+            font-weight: 300;
+        }
+        .table tbody tr td {
+            font-size: 0.875em;
+            vertical-align: middle;
+            border-top: 1px solid #e7ebee;
+            padding: 12px 8px;
+        }
+    </style>
+    <title>DBPEDIA Community</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <a class="navbar-brand">DBpedia Community</a>
+    </nav>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <hr>
+    <div ng-app="googleSheets" ng-controller="GoogleSheetsDataCtrl" class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                            <table class="table user-list">
+                                <thead>
+                                <tr>
+                                    <th><span>Name</span></th>
+                                    <th><span>Role</span></th>
+                                    <th><span>Affiliation</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="entry in entries">
+                                    <td>
+                                        <img src={{entry.gsx$picturelink.$t}}  onerror="this.src='noimage.png'" width="550" height="55">
+                                        <a href={{entry.gsx$homepage.$t}} class="user-link">{{entry.gsx$name.$t}}</a>
+                                    </td>
+                                    <td>{{entry.gsx$workshoproledescription.$t}}</td>
+                                    <td>{{entry.gsx$affiliationorcompany.$t}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="googlesheetsFunctions.js"></script>
+</body>
